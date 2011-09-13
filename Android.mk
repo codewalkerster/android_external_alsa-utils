@@ -97,14 +97,62 @@ include $(BUILD_EXECUTABLE)
 include $(CLEAR_VARS)
 
 ALSAINIT_DIR := $(TARGET_OUT)/usr/share/alsa/init
+LOCAL_ALSAINIT_DIR := alsactl/init
 
-files := $(addprefix $(ALSAINIT_DIR)/,00main default hda help info test)
 
-$(files): PRIVATE_MODULE := alsactl_initdir
-$(files): $(ALSAINIT_DIR)/%: $(LOCAL_PATH)/alsactl/init/% | $(ACP)
-	$(transform-prebuilt-to-target)
+include $(CLEAR_VARS)
+LOCAL_MODULE := alsainit-00main
+LOCAL_MODULE_STEM := 00main
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(ALSAINIT_DIR)
+LOCAL_SRC_FILES := $(LOCAL_ALSAINIT_DIR)/00main
+include $(BUILD_PREBUILT)
 
-ALL_PREBUILT += $(files)
+include $(CLEAR_VARS)
+LOCAL_MODULE := alsainit-default
+LOCAL_MODULE_STEM := default
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(ALSAINIT_DIR)
+LOCAL_SRC_FILES := $(LOCAL_ALSAINIT_DIR)/default
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := alsainit-hda
+LOCAL_MODULE_STEM := hda
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(ALSAINIT_DIR)
+LOCAL_SRC_FILES := $(LOCAL_ALSAINIT_DIR)/hda
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := alsainit-help
+LOCAL_MODULE_STEM := help
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(ALSAINIT_DIR)
+LOCAL_SRC_FILES := $(LOCAL_ALSAINIT_DIR)/help
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := alsainit-info
+LOCAL_MODULE_STEM := info
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(ALSAINIT_DIR)
+LOCAL_SRC_FILES := $(LOCAL_ALSAINIT_DIR)/info
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := alsainit-test
+LOCAL_MODULE_STEM := test
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(ALSAINIT_DIR)
+LOCAL_SRC_FILES := $(LOCAL_ALSAINIT_DIR)/test
+include $(BUILD_PREBUILT)
 
 endif
 endif
