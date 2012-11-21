@@ -1,5 +1,6 @@
 
-ifeq ($(strip $(BOARD_USES_ALSA_AUDIO)),true)
+# BOARD_ALSA_AUDIO is legacy or true
+ifneq (,$(strip $(filter $(BOARD_ALSA_AUDIO),legacy true)))
 ifeq ($(strip $(BUILD_WITH_ALSA_UTILS)),true)
 
 LOCAL_PATH:= $(call my-dir)
